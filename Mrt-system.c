@@ -71,3 +71,22 @@ int main() {
 
     return 0;
 }
+
+//added registeruser
+
+void registerUser() {
+    struct Customer newCustomer;
+    printf("\nRegistration\n");
+    printf("Enter username: ");
+    scanf("%s", newCustomer.username);
+    printf("Enter password: ");
+    scanf("%s", newCustomer.password);
+    printf("Enter your full name: ");
+    getchar(); // Clear the newline character left in the buffer
+    fgets(newCustomer.name, sizeof(newCustomer.name), stdin);
+    newCustomer.name[strcspn(newCustomer.name, "\n")] = '\0'; // Remove newline character from the name
+    newCustomer.mrtPass = 0;
+
+    customers[totalCustomers++] = newCustomer;
+    printf("Registration successful!\n");
+}
