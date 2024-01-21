@@ -90,3 +90,25 @@ void registerUser() {
     customers[totalCustomers++] = newCustomer;
     printf("Registration successful!\n");
 }
+
+//login section
+
+
+void loginUser() {
+    char username[50];
+    char password[50];
+    printf("\nLogin\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+    printf("Enter password: ");
+    scanf("%s", password);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0 && strcmp(customers[i].password, password) == 0) {
+            printf("Login successful! Welcome, %s!\n", customers[i].name);
+            return;
+        }
+    }
+
+    printf("Login failed. Invalid username or password.\n");
+}
