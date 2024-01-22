@@ -179,3 +179,23 @@ void applyForCard() {
 
     printf("Username not found. Please check your input.\n");
 }
+
+void getMRTPass() {
+    char username[50];
+    printf("\nGet MRT Pass\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0) {
+            if (customers[i].mrtPass == 1) {
+                printf("MRT pass issued successfully!\n");
+            } else {
+                printf("You need to apply for an MRT card first.\n");
+            }
+            return;
+        }
+    }
+
+    printf("Username not found. Please check your input.\n");
+}
