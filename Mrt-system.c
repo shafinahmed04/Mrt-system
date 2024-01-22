@@ -112,3 +112,26 @@ void loginUser() {
 
     printf("Login failed. Invalid username or password.\n");
 }
+
+//updatedetails
+
+
+void updateDetails() {
+    char username[50];
+    printf("\nUpdate Details\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0) {
+            printf("Enter new full name: ");
+            getchar();
+            fgets(customers[i].name, sizeof(customers[i].name), stdin);
+            customers[i].name[strcspn(customers[i].name, "\n")] = '\0'; // Remove newline character from the name
+            printf("Details updated successfully!\n");
+            return;
+        }
+    }
+
+    printf("Username not found. Please check your input.\n");
+}
