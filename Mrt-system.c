@@ -82,9 +82,9 @@ void registerUser() {
     printf("Enter password: ");
     scanf("%s", newCustomer.password);
     printf("Enter your full name: ");
-    getchar(); // Clear the newline character left in the buffer
+    getchar();
     fgets(newCustomer.name, sizeof(newCustomer.name), stdin);
-    newCustomer.name[strcspn(newCustomer.name, "\n")] = '\0'; // Remove newline character from the name
+    newCustomer.name[strcspn(newCustomer.name, "\n")] = '\0';
     newCustomer.mrtPass = 0;
 
     customers[totalCustomers++] = newCustomer;
@@ -127,7 +127,7 @@ void updateDetails() {
             printf("Enter new full name: ");
             getchar();
             fgets(customers[i].name, sizeof(customers[i].name), stdin);
-            customers[i].name[strcspn(customers[i].name, "\n")] = '\0'; // Remove newline character from the name
+            customers[i].name[strcspn(customers[i].name, "\n")] = '\0';
             printf("Details updated successfully!\n");
             return;
         }
@@ -146,12 +146,33 @@ void deleteAccount() {
 
     for (int i = 0; i < totalCustomers; ++i) {
         if (strcmp(customers[i].username, username) == 0) {
-            // Shift the remaining elements to fill the gap
+
             for (int j = i; j < totalCustomers - 1; ++j) {
                 customers[j] = customers[j + 1];
             }
             totalCustomers--;
             printf("Account deleted successfully!\n");
+            return;
+        }
+    }
+
+    printf("Username not found. Please check your input.\n");
+}
+
+void applyForCard() {
+    char username[50];
+    printf("\nApply for Card\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0) {
+            if (customers[i].mrtPass == 0) {
+                customers[i].mrtPass = 1;
+                printf("MRT card applied successfully!\n");
+            } else {
+                printf("You already have an MRT card.\n");
+            }
             return;
         }
     }
