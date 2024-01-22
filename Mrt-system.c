@@ -135,3 +135,26 @@ void updateDetails() {
 
     printf("Username not found. Please check your input.\n");
 }
+
+//delete account
+
+void deleteAccount() {
+    char username[50];
+    printf("\nDelete Account\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0) {
+            // Shift the remaining elements to fill the gap
+            for (int j = i; j < totalCustomers - 1; ++j) {
+                customers[j] = customers[j + 1];
+            }
+            totalCustomers--;
+            printf("Account deleted successfully!\n");
+            return;
+        }
+    }
+
+    printf("Username not found. Please check your input.\n");
+}
