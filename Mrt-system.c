@@ -199,3 +199,23 @@ void getMRTPass() {
 
     printf("Username not found. Please check your input.\n");
 }
+void returnPass() {
+    char username[50];
+    printf("\nReturn MRT Pass\n");
+    printf("Enter username: ");
+    scanf("%s", username);
+
+    for (int i = 0; i < totalCustomers; ++i) {
+        if (strcmp(customers[i].username, username) == 0) {
+            if (customers[i].mrtPass == 1) {
+                customers[i].mrtPass = 0;
+                printf("MRT pass returned successfully!\n");
+            } else {
+                printf("You don't have an MRT pass to return.\n");
+            }
+            return;
+        }
+    }
+
+    printf("Username not found. Please check your input.\n");
+}
